@@ -61,15 +61,10 @@ body {
   border: none;
   margin: 15px 0px;
 }
-
 .form__btn {
-  cursor: pointer;
-  background-color: grey;
-  padding: 10px 30px;
-  color: white;
-  border-radius: 20px;
+	transition: all 0.3s ease 0s;
 }
-
 .form__btn:hover {
   background-color: rgba(0, 0, 0, 0.7);
+  color: white;
 }

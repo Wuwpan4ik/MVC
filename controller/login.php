@@ -12,13 +12,13 @@
 								$_SESSION['id'] = $this->db->db->query("SELECT `id` FROM `users` WHERE `login` ='" . $login . "'")[0]['id'];
 								$this->redirect();
 							} else {
-								exit('Данный логин занят');
+								$_SESSION['message'] = 'Данный логин занят';
 							}
 						} else {
-							exit('Пароли разные!');
+							$_SESSION['message'] = 'Пароли разные';
 						};
 					} else {
-						exit('Все поля должны быть заполнены!');
+						$_SESSION['message'] = 'Все поля должны быть заполнены';
 					};
 				};
 				if(isset($_POST['auth'])) {
@@ -28,35 +28,14 @@
 							$_SESSION['id'] = $this->db->db->query("SELECT `id` FROM `users` WHERE `login` ='" . $login . "'")[0]['id'];
 							$this->redirect();
 						} else { 
-							$message = 'Неправильный пароль';
+							$_SESSION['message'] = 'Неверный пароль';
 						}
 					} else {
-						exit('Все поля должны быть заполнены!');
+						$_SESSION['message'] = 'Все поля должны быть заполнены';
 					};
 				}
 		}
 		public function get_content() {
-echo <<<ECHO
-<div class="main">
-<div class="form">
-<div class="form__top">
-<button id="changeFormBtn" class="form__top-btn active" onclick="changeModsAuth()">Авторизация</button><button id="changeFormBtn" class="form__top-btn" onclick="changeModsAuth()">Регистрация</button>
-</div>
-<div class="form__main">
-<form action="" class="main__form active" id="changeForm" method="POST">
-<input name="login" class="form__input" placeholder="Введите логин">
-<input name="password" type='password' class="form__input" placeholder="Введите Пароль">
-<button type="submit" class="form__btn btn" name="auth">Отправить</button>
-</form>
-<form action="" class="main__form" id="changeForm" method="POST">
-<input name="login" class="form__input" placeholder="Введите логин">
-<input name="password" type='password' class="form__input" placeholder="Введите пароль">
-<input name="confirm_password" type='password' class="form__input" placeholder="Подтвердите пароль">
-<button type="submit" class="form__btn btn" name="register">Отправить</button>
-</form>
-</div>
-</div>
-ECHO;
 		}
 		public function redirect() {
 			echo '<!DOCTYPE html>
