@@ -17,7 +17,8 @@
 </form>
 <div style='text-align:center; color: red; font-size:21px;margin-top:15px;'>
 <?php 
-	if (isset($_SESSION['message'])) {
+	if (isset($_SESSION['message']))
+	{
 		echo htmlspecialchars($_SESSION['message']);
 		unset($_SESSION['message']);
 	}
