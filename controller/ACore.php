@@ -10,10 +10,8 @@ abstract class ACore {
 		$this->m = new Task;
 	}
 
-	public function get_body($method) {
-		$tpl = 'Main';
+	public function get_body($tpl, $method) {
 		if($_POST || $_GET['del']) {
-			$tpl = 'ManageTask';
 			$this->obr($method);
 		}
 		$content = $this->get_content();
