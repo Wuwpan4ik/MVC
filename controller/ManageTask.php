@@ -1,27 +1,8 @@
 <?php 
 	class ManageTask extends ACore {
 		protected function obr($method) {
-			switch($method) {
-				case 'ReadyTask': 
-					$this->ReadyTask();
-					break;
-				case 'DeleteTask':
-					$this->DeleteTask();
-					break;
-				case 'DeleteAllTask':
-					$this->DeleteAllTask();
-					break;
-				case 'ReadyAllTask':
-					$this->ReadyAllTask();
-					break;
-				case 'UnreadyTask':
-					$this->UnreadyTask();
-					break;
-				case 'AddTask':
-					$this->AddTask();
-					break;
-				default:
-					break;
+			if (method_exists($this, $method)) { 
+				$this->$method();
 			}
 		}
 
