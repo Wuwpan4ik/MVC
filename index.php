@@ -11,8 +11,8 @@
 		} 
 	});
 
-	if($_GET['option']) {
-		$class = trim(strip_tags($_GET['option']));
+	if($_GET['method']) {
+		$class = 'ManageTask';
 		$method = trim(strip_tags($_GET['method']));
 	}
 	else {
@@ -20,9 +20,9 @@
 	}
 
 	if(class_exists($class)) {
-	
+
 		$obj = new $class;
-		$obj->get_body($class, $method);
+		$obj->get_body($method);
 
 	}
 	else {
