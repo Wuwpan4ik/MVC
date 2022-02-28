@@ -5,9 +5,10 @@
 	spl_autoload_register(function($class) {
 		if(file_exists("controller/".$class.".php")) {
 			require_once 'controller/'.$class.'.php';
-		} else {
-			require_once "model/model.php";
-		}
+		} 
+		if(file_exists("model/model.php")) {
+			require_once 'model/model.php';
+		} 
 	});
 
 	if($_GET['option']) {
