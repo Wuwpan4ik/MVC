@@ -1,9 +1,7 @@
 <?php 
-	return [
-		'host' => 'localhost',
-		'db_name' => 'tasklistapp',
-		'username' => 'root',
-		'password' => '',
-		'charset' => 'utf8'
-	]
+	define('HOST', 'localhost');
+	define('DB_NAME', 'tasklistapp');
+	define('USERNAME', 'root');
+	define('PASSWORD', '');
+	define('CHARSET', 'utf8');
 ?>

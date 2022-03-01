@@ -7,17 +7,11 @@ class Database {
 	}
 
 	public function connect() {
-		$config = [
-		'host' => 'localhost',
-		'db_name' => 'tasklistapp',
-		'username' => 'root',
-		'password' => '',
-		'charset' => 'utf8'
-		];
+		include_once 'constant.php';
 
-		$dsn = 'mysql:host='. $config['host'].';dbname='. $config['db_name'] .';charset='. $config['charset'] ;
+		$dsn = 'mysql:host='.HOST.';dbname='. DB_NAME .';charset='. CHARSET ;
 
-		$this->link = new PDO($dsn, $config['username'], $config['password']);
+		$this->link = new PDO($dsn, USERNAME,PASSWORD);
 
 		return $this;
 	}
