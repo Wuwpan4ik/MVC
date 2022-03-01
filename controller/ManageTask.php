@@ -1,9 +1,7 @@
 <?php 
 	class ManageTask extends ACore {
-		protected function obr($method) {
-			if (method_exists($this, $method)) { 
-				$this->$method();
-			}
+		public function obr($method) {
+			$this->$method();
 		}
 
 		protected function DeleteTask() {

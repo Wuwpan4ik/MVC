@@ -10,10 +10,7 @@ abstract class ACore {
 		$this->m = new Task;
 	}
 
-	public function get_body($tpl, $method) {
-		if($_POST || $_GET['del']) {
-			$this->obr($method);
-		}
+	public function get_body($tpl) {
 		$content = $this->get_content();
 		//$tpl - template
 		include "template/index.php";

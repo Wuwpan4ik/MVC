@@ -7,10 +7,7 @@ abstract class ACore_Admin {
 		$this->db = new Task();
 	}
 	
-	public function get_body($tpl, $method) {
-		if($_POST || $_GET['del']) {
-			$this->obr($method);
-		}
+	public function get_body($tpl) {
 		$this->get_content();
 		include "template/index.php";
 	}

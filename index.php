@@ -5,10 +5,9 @@
 	spl_autoload_register(function($class) {
 		if(file_exists("controller/".$class.".php")) {
 			require_once 'controller/'.$class.'.php';
-		} 
-		if(file_exists("model/model.php")) {
-			require_once 'model/model.php';
-		} 
+		} else {
+			require_once "model/model.php";
+		}
 	});
 
 	if($_GET['option']) {
@@ -22,7 +21,12 @@
 	if(class_exists($class)) {
 	
 		$obj = new $class;
-		$obj->get_body($class, $method);
+		if ($method) {
+			if (method_exists($obj, $method)) { 
+				$obj->obr($method);
+			}
+		}
+		$obj->get_body($class);
 
 	}
 	else {
