@@ -1,39 +1,36 @@
 <?php 
 	class ManageTask extends ACore {
-		public function obr($method) {
-			$this->$method();
-		}
 
-		protected function DeleteTask() {
+		public function DeleteTask() {
 			$task_id = $_GET['task_id'];
 			$this->m->db->execute("DELETE FROM `tasks` WHERE id = '$task_id'");
 		}
 
-		protected function AddTask() {
+		public function AddTask() {
 			$text = $_POST['task__text'];
 			$this->m->db->execute("INSERT INTO `tasks` (`user_id`, `description`) VALUES ('". $_SESSION['id'] ."', '". $text ."')");
 		}
 
-		protected function DeleteAllTask() {
+		public function DeleteAllTask() {
 			$tasks = ($this->m->db->query("SELECT * FROM `tasks` WHERE user_id = '". $_SESSION['id'] ."'"));
 			foreach ($tasks as $task) {
 				$this->m->db->execute("DELETE FROM `tasks` WHERE id = '". $task['id'] ."'");
 			}
 		}
 
-		protected function ReadyAllTask() {
+		public function ReadyAllTask() {
 			$tasks = ($this->m->db->query("SELECT * FROM `tasks` WHERE user_id = '". $_SESSION['id'] ."'"));
 			foreach ($tasks as $task) {
 				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '". $task['id'] ."'");
 			}
 		}
 
-		protected function ReadyTask() {
+		public function ReadyTask() {
 			$task_id = $_GET['task_id'];
 			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '$task_id'");
 		}
 
-		protected function UnreadyTask() {
+		public function UnreadyTask() {
 			$id_task = $_GET['task_id'];
 			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '". $id_task ."'");
 		}

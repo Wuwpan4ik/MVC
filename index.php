@@ -6,8 +6,8 @@
 		if(file_exists("controller/".$class.".php")) {
 			require_once 'controller/'.$class.'.php';
 		} 
-		if (file_exists("model/model.php")) {
-			require_once "model/model.php";
+		if (file_exists("model/$class.php")) {
+			require_once "model/$class.php";
 		}
 	});
 
@@ -22,9 +22,11 @@
 	if(class_exists($class)) {
 	
 		$obj = new $class;
-		if ($method) {
+		if ($class == 'login') {
+			$obj->obr();
+		} elseif ($method) {
 			if (method_exists($obj, $method)) { 
-				$obj->obr($method);
+				$obj->$method();
 			}
 		}
 		$obj->get_body($class);
