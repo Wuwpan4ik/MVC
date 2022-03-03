@@ -35,6 +35,8 @@
 			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '". $id_task ."'");
 		}
 
+		public function obr() {}
+
 		public function get_content() {
 			echo '<!DOCTYPE html>
 			<html lang="en">

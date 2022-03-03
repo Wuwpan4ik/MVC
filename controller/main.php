@@ -4,5 +4,7 @@
 			$result = $this->m->viewTasks();
 			return $result;
 		}
+
+		public function obr() {}
 	}
 ?>

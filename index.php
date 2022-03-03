@@ -22,14 +22,12 @@
 	if(class_exists($class)) {
 	
 		$obj = new $class;
-		if ($class == 'login') {
-			$obj->obr();
-		} elseif ($method) {
+		$obj->obr();
+		if ($method) {
 			if (method_exists($obj, $method)) { 
 				$obj->$method();
 			}
 		}
-		$obj->get_body($class);
 
 	}
 	else {

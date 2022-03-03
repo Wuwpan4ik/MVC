@@ -8,6 +8,9 @@ abstract class ACore {
 			header("Location:?option=login");
 		}
 		$this->m = new Task;
+		if($_GET['option']) {
+			$this->get_body(trim(strip_tags($_GET['option'])));
+		}
 	}
 
 	public function get_body($tpl) {

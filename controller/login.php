@@ -1,5 +1,5 @@
 <?php 
-	class Login extends ACore_admin {
+	class Login extends ACoreAdmin {
 		public function obr() {
 			$login = $_POST['login'];
 			$password = $_POST['password'];
