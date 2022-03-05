@@ -1,9 +1,18 @@
 <?php 
 	class ManageTask extends ACore {
 
+		final function checkUserTask($task_id) {
+			$a = $this->m->db->query("SELECT `user_id` FROM `tasks` WHERE id = '$task_id'");
+			return ($a[0]['user_id'] == $_SESSION['id']) ? True : False;
+		}
+
 		public function DeleteTask() {
 			$task_id = $_GET['task_id'];
-			$this->m->db->execute("DELETE FROM `tasks` WHERE id = '$task_id'");
+			if ($this->checkUserTask($task_id)) {
+				$this->m->db->execute("DELETE FROM `tasks` WHERE id = '$task_id'");
+			} else {
+				return False;
+			}
 		}
 
 		public function AddTask() {
@@ -12,27 +21,29 @@
 		}
 
 		public function DeleteAllTask() {
-			$tasks = ($this->m->db->query("SELECT * FROM `tasks` WHERE user_id = '". $_SESSION['id'] ."'"));
-			foreach ($tasks as $task) {
-				$this->m->db->execute("DELETE FROM `tasks` WHERE id = '". $task['id'] ."'");
-			}
+			$this->m->db->execute("DELETE FROM `tasks` WHERE user_id = '". $_SESSION['id'] ."'");
 		}
 
 		public function ReadyAllTask() {
-			$tasks = ($this->m->db->query("SELECT * FROM `tasks` WHERE user_id = '". $_SESSION['id'] ."'"));
-			foreach ($tasks as $task) {
-				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '". $task['id'] ."'");
-			}
+			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE user_id = '". $_SESSION['id'] ."'");
 		}
 
 		public function ReadyTask() {
 			$task_id = $_GET['task_id'];
-			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '$task_id'");
+			if ($this->checkUserTask($task_id)) {
+				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '$task_id'");
+			} else {
+				return False;
+			}
 		}
 
 		public function UnreadyTask() {
-			$id_task = $_GET['task_id'];
-			$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '". $id_task ."'");
+			$task_id = $_GET['task_id'];
+			if ($this->checkUserTask($task_id)) {
+				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '". $task_id ."'");
+			} else {
+				return False;
+			}
 		}
 
 		public function obr() {}

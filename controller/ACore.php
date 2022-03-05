@@ -15,7 +15,6 @@ abstract class ACore {
 
 	public function get_body($tpl) {
 		$content = $this->get_content();
-		//$tpl - template
 		include "template/index.php";
 	}
 	

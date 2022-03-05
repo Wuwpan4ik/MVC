@@ -4,7 +4,7 @@
 
 		public function __construct() {
 			require_once 'connect.php';
-			$this->db = new Database();
+			$this->db = $db;
 		}
 		
 		public function viewTasks() {
