@@ -7,17 +7,15 @@
 		}
 
 		public function DeleteTask() {
-			$task_id = $_GET['task_id'];
-			if ($this->checkUserTask($task_id)) {
-				$this->m->db->execute("DELETE FROM `tasks` WHERE id = '$task_id'");
+			if ($this->checkUserTask($_GET['task_id'])) {
+				$this->m->db->execute("DELETE FROM `tasks` WHERE id = '" . $_GET['task_id']. "'");
 			} else {
 				return False;
 			}
 		}
 
 		public function AddTask() {
-			$text = $_POST['task__text'];
-			$this->m->db->execute("INSERT INTO `tasks` (`user_id`, `description`) VALUES ('". $_SESSION['id'] ."', '". $text ."')");
+			$this->m->db->execute("INSERT INTO `tasks` (`user_id`, `description`) VALUES ('". $_SESSION['id'] ."', '". $_POST['task__text'] ."')");
 		}
 
 		public function DeleteAllTask() {
@@ -29,18 +27,16 @@
 		}
 
 		public function ReadyTask() {
-			$task_id = $_GET['task_id'];
-			if ($this->checkUserTask($task_id)) {
-				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '$task_id'");
+			if ($this->checkUserTask($_GET['task_id'])) {
+				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Ready' WHERE id = '" . $_GET['task_id']. "'");
 			} else {
 				return False;
 			}
 		}
 
 		public function UnreadyTask() {
-			$task_id = $_GET['task_id'];
-			if ($this->checkUserTask($task_id)) {
-				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '". $task_id ."'");
+			if ($this->checkUserTask($_GET['task_id'])) {
+				$this->m->db->execute("UPDATE `tasks` SET `status` = 'Unready' WHERE id = '" . $_GET['task_id']. "'");
 			} else {
 				return False;
 			}
