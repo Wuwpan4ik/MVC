@@ -1,6 +1,6 @@
 <?php 
 	class Login extends ACoreAdmin {
-		public function obr() {
+		public function logining() {
 			$login = $_POST['login'];
 			$password = $_POST['password'];
 			if(isset($_POST['register'])) {

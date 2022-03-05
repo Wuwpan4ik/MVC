@@ -22,7 +22,6 @@
 	if(class_exists($class)) {
 	
 		$obj = new $class;
-		$obj->obr();
 		if ($method) {
 			if (method_exists($obj, $method)) { 
 				$obj->$method();
